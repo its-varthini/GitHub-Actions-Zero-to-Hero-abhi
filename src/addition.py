@@ -1,8 +1,20 @@
-# app.py
-# testing run
-def add(a, b):
-    return a + b
+from flask import Flask, render_template, jsonify
 
-def test_add():
-    assert add(1, 2) == 3
-    assert add(1, -1) == 0
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return render_template("home.html")
+
+@app.route("/welcome")
+def welcome():
+    return "Welcome to Varthini's Flask App!"
+
+@app.route("/user")
+def user():
+    user = {"user":"admin"}
+    return jsonify(user)
+
+if __name__ == "__main__":
+   # app.run(debug=True)
+    app.run(debug=False, host="0.0.0.0", port="5000")
